@@ -1,0 +1,47 @@
+@minimalCRUDPlayground_HostAddress = http://localhost:5003
+
+# Get all todos
+GET {{WebApplication15_HostAddress}}/todoitems/
+Accept: application/json
+
+###
+
+# Get complete todos
+GET {{WebApplication15_HostAddress}}/todoitems/complete
+Accept: application/json
+
+###
+
+# Get todo by ID
+GET {{WebApplication15_HostAddress}}/todoitems/1
+Accept: application/json
+
+###
+
+# Create new todo
+POST {{WebApplication15_HostAddress}}/todoitems/
+Content-Type: application/json
+
+{
+  "name": "Learn ASP.NET Core",
+  "isComplete": false
+}
+
+###
+
+# Update existing todo
+PUT {{WebApplication15_HostAddress}}/todoitems/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Learn ASP.NET Core - Updated",
+  "isComplete": true
+}
+
+###
+
+# Delete todo
+DELETE {{WebApplication15_HostAddress}}/todoitems/1
+
+###
