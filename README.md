@@ -136,13 +136,6 @@ Important implementation choices you can learn from:
 - Add validation to DTOs (e.g., data annotations) and return appropriate 400 responses.
 - Add automated tests: create xUnit tests that spin up the WebApplicationFactory for integration testing.
 
-## Contributing
-This project follows clean code principles and minimal API best practices. When contributing:
-- Keep the minimal API pattern intact
-- Maintain the DTO security pattern (never expose internal entity fields)
-- Follow the existing code style and naming conventions
-- Ensure all endpoints return appropriate HTTP status codes
-
 ## References
 
 - Microsoft tutorial: "Create a minimal web API in ASP.NET Core" — https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-10.0&tabs=visual-studio
