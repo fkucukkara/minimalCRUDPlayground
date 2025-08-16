@@ -20,6 +20,40 @@ This README explains what the project contains, how the code is organized, how t
 - `minimalCRUDPlayground/TodoDBContext.cs` — EF Core `DbContext` for `Todo` entities.
 - `minimalCRUDPlayground/minimalCRUDPlayground.csproj` — Project file; references `Microsoft.AspNetCore.OpenApi` and `Microsoft.EntityFrameworkCore.InMemory`.
 - `minimalCRUDPlayground/minimalCRUDPlayground.http` — A collection of example HTTP requests you can run from an editor or copy into a tool like curl or Postman.
+- `minimalCRUDPlayground/appsettings.json` and `appsettings.Development.json` — Configuration files for different environments.
+- `global.json` — .NET SDK version configuration (targets .NET 9.0).
+
+## Project Structure
+```
+minimalCRUDPlayground/
+├── minimalCRUDPlayground/
+│   ├── Program.cs              # Main application entry point with minimal API endpoints
+│   ├── TodoDBContext.cs        # Entity Framework DbContext
+│   ├── minimalCRUDPlayground.csproj  # Project file with dependencies
+│   ├── minimalCRUDPlayground.http    # HTTP request examples
+│   ├── appsettings.json        # Application configuration
+│   ├── appsettings.Development.json  # Development environment config
+│   └── Properties/
+│       └── launchSettings.json # Launch profiles for development
+├── README.md                   # This file
+├── LICENSE                     # MIT License
+├── global.json                 # .NET SDK version configuration
+└── minimalCRUDPlayground.sln   # Visual Studio solution file
+```
+
+## Dependencies
+This project uses the following key NuGet packages:
+- **Microsoft.AspNetCore.OpenApi** (9.0.8) — Provides OpenAPI/Swagger documentation support
+- **Microsoft.EntityFrameworkCore.InMemory** (9.0.8) — In-memory database provider for Entity Framework Core
+
+Target Framework: **.NET 9.0** (as specified in global.json)
+
+## Development Environment
+The project is configured with:
+- **Visual Studio 2022** support (solution file included)
+- **HTTPS development certificates** for secure local development
+- **Hot reload** capabilities for rapid development
+- **Nullable reference types** enabled for better null safety
 
 ## Code contract (small)
 - Inputs/Outputs:
@@ -57,11 +91,17 @@ Prerequisite: install .NET SDK 9.x (the project targets `net9.0`).
 Open PowerShell in the repo root and run:
 
 ```powershell
-# build
+# Restore dependencies
+dotnet restore
+
+# Build the solution
 dotnet build
 
-# run the minimal API from the project folder
+# Run the application
 dotnet run --project .\minimalCRUDPlayground\minimalCRUDPlayground.csproj
+
+# Build for release
+dotnet build --configuration Release
 ```
 
 When running in development, OpenAPI (Swagger) is mapped automatically; check the console output for the launched URL (e.g., https://localhost:5001 or http://localhost:5000 depending on your config).
@@ -95,6 +135,13 @@ Important implementation choices you can learn from:
 - Replace InMemory DB with a persistent provider (e.g., SQL Server or Postgres): update `AddDbContext` and add a connection string in `appsettings.json`.
 - Add validation to DTOs (e.g., data annotations) and return appropriate 400 responses.
 - Add automated tests: create xUnit tests that spin up the WebApplicationFactory for integration testing.
+
+## Contributing
+This project follows clean code principles and minimal API best practices. When contributing:
+- Keep the minimal API pattern intact
+- Maintain the DTO security pattern (never expose internal entity fields)
+- Follow the existing code style and naming conventions
+- Ensure all endpoints return appropriate HTTP status codes
 
 ## References
 
